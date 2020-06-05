@@ -42,6 +42,3 @@ inline string Block::CalculateHash() const {
 	return sha256(ss.str());
 }
 
-int Block::Balance(std::string account) {
-	return ledger[account];
-}

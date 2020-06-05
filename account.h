@@ -1,14 +1,14 @@
 #include <iostream>
 
+typedef std::string txHash;
+typedef std::string account;
+
 class Account {
 	public:
 		// local node address
-		std::string address;
-		std::string Address();
+		account address;
+		account Address();
 
 		Account(std::string password);
 
-	private:
-		// password to unlock the account
-		std::string passPhrase;
 };
