@@ -2,16 +2,14 @@
 #include <vector>
 #include "block.h"
 
-using namespace std;
-
 
 class Blockchain {
 	public:
 		Blockchain();
-		void AddBlock(Block bNew);
 
-	private:
-		uint32_t _nDifficult;
-		vector<Block> _vChain;
-		Block _GetLastBlock() const;
+		void AddBlock(Block bNew, string account);
+		Block GetLastBlock() const;
+
+		uint32_t nDifficulty;
+		std::vector<Block> vBlocks;
 };
