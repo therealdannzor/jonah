@@ -6,11 +6,9 @@ Account::Account(std::string pass) {
 	std::stringstream ss; 
 	time_t now = std::time(nullptr);
 	ss << pass << now; 
-	std::string hashed = sha256(ss.str());
-	address = hashed;
+	address = sha256(ss.str());
 }
 
-account Account::Address() {
+std::string Account::Address() {
 	return address;
 }
-

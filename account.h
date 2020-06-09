@@ -1,14 +1,19 @@
 #include <iostream>
-
-typedef std::string txHash;
-typedef std::string account;
+#include "transaction.h"
 
 class Account {
 	public:
 		// local node address
-		account address;
-		account Address();
+		std::string address;
+		std::string Address();
 
 		Account(std::string password);
+
+	private:
+		// signs a transaction object and returns a receipt
+		std::string SignTransaction(std::string key, Transaction tx);
+
+		// sends a transaction to `recipient` with value `amount`
+		std::string Send(std::string recipient, uint32_t amount);
 
 };

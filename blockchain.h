@@ -1,31 +1,24 @@
 #include <cstdint>
 #include <vector>
 #include "block.h"
+#include "currency.h"
 
 
 class Blockchain {
 	public:
-		// create a new blockchain
-		Blockchain();
+		Blockchain(std::string name, uint32_t capacity);
 
-		// chain the blocks together
-		std::vector<Block> vBlocks;
+		// Block methods
+		std::vector<Block> vBlocks; // chain the blocks together
+		void AddBlock(Block bNew, string account); // append a block to the chain
+		Block GetLastBlock() const; // retrieve the last appended block
 
-		// track of account balances
-		map<std::string, int> mLedger;
+		// Cryptocurrency
+		Currency coin;
 
-		// append a block to the chain
-		void AddBlock(Block bNew, string account);
+		
+		// Config
+		uint32_t nDifficulty; // mining difficulty
 
-		// retrieve the last appended block
-		Block GetLastBlock() const;
 
-		// mining difficulty
-		uint32_t nDifficulty;
-
-		// retrieve balance of `address`
-		uint32_t Balance(string address);
-
-		// send `amount` coins from `sender` to `recipient`
-		std::string Send(std::string sender, std::string recipient, uint32_t amount);
 };
