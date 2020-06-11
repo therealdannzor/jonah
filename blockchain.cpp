@@ -1,4 +1,4 @@
-#include "blockchain.h"
+#include "blockchain.hpp"
 #include <map>
 
 Blockchain::Blockchain(std::string currencyName,  uint32_t capacity)

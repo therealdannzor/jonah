@@ -1,4 +1,4 @@
-#include "block.h"
+#include "block.hpp"
 #include "sha256.h"
 #include <sstream>
 #include <chrono>

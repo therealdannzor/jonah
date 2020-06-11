@@ -1,7 +1,7 @@
 #include <cstdint>
 #include <vector>
-#include "block.h"
-#include "currency.h"
+#include "block.hpp"
+#include "currency.hpp"
 
 
 class Blockchain {

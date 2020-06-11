@@ -1,7 +1,10 @@
-#include "blockchain.h"
-#include "account.h"
+#include "blockchain.hpp"
+#include "account.hpp"
 
 int main() {
+	bool running;
+
+
 	// Create a chain and two accounts
 	Blockchain bChain = Blockchain("Jonahcoin", 490);
 	Account alice_account = Account("a");
@@ -27,7 +30,8 @@ int main() {
 	cout << "Bob balance is: " << bobBal << endl;
 
 	// Transfer two coins from Bob to Alice
-	bChain.coin.Transfer(2, BobAddr, AliceAddr);
+	std::string txHash = bChain.coin.Transfer(2, BobAddr, AliceAddr);
+	cout << "Transaction hash: " << txHash << endl;
 
    // Check successful transfer
 	aliceBal = bChain.coin.Balance(AliceAddr);
