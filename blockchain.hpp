@@ -16,7 +16,7 @@ class Blockchain {
 
 		// Block methods
 		std::vector<Block> vBlocks; // chain the blocks together
-		void AddBlock(Block bNew, string account); // append a block to the chain
+		void AddBlock(Block bNew, std::string account); // append a block to the chain
 		Block GetLastBlock() const; // retrieve the last appended block
 
 

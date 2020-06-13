@@ -1,23 +1,21 @@
 #include <cstdint>
 #include <iostream>
 #include <map>
-
-using namespace std;
+#include "transaction.hpp"
 
 class Block {
 	public:
-		string previousHash;
-		string GetHash();
-		void MineBlock(uint32_t nDifficulty, string account);
-
-		Block(uint32_t nIndexIn, const string &sDataIn);
+		std::string previousHash;
+		std::string GetHash();
+		void MineBlock(uint32_t nDifficulty, std::string account);
+		Block(uint32_t nIndexIn, const std::string &sDataIn);
 	
 	private:
 		uint32_t _index;
 		int64_t _nonce;
-		string _data;
-		string _hash;
+		std::string _data;
+		std::string _hash;
 		time_t _time;
 
-		string CalculateHash() const;
+		std::string CalculateHash() const;
 };
