@@ -2,6 +2,7 @@
 #include <chrono>
 #include <sstream>
 
+
 Currency::Currency(std::string newName, uint32_t newCapacity)
 : name(newName), capacity(newCapacity)
 {
