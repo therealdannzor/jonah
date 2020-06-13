@@ -1,4 +1,4 @@
-FILES = main.cpp blockchain.cpp block.cpp sha256.cpp account.cpp currency.cpp
+FILES = main.cpp blockchain.cpp block.cpp sha256.cpp account.cpp currency.cpp cli.cpp
 TARGET_BINARY = TestChain
 
 build: 
