@@ -1,19 +1,25 @@
 #include <iostream>
+#include <vector>
 #include "transaction.hpp"
 
 class Account {
 	public:
+		Account(std::string password);
+
 		// local node address
 		std::string address;
 		std::string Address();
 
-		Account(std::string password);
-
 	private:
-		// signs a transaction object and returns a receipt
-		std::string SignTransaction(std::string key, Transaction tx);
+		// stores all the local transactions in an account
+		std::vector<Transaction> vTransactionPool;
+
+		// appends a pending transaction to local tx pool
+		void Append(Transaction tx);
+
+		// amount of local transactions submitted
+		std::uint16_t nonce;
 
 		// sends a transaction to `recipient` with value `amount`
 		std::string Send(std::string recipient, uint32_t amount);
-
 };

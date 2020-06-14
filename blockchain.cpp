@@ -1,5 +1,4 @@
 #include "blockchain.hpp"
-#include <map>
 
 Blockchain::Blockchain(CLI cli)
 : cmd(cli)
@@ -10,7 +9,7 @@ Blockchain::Blockchain(CLI cli)
 }
 
 
-void Blockchain::AddBlock(Block newBlock, string account) {
+void Blockchain::AddBlock(Block newBlock, std::string account) {
 	newBlock.previousHash = GetLastBlock().GetHash();
 	newBlock.MineBlock(nDifficulty, account);
 	cmd.coin.mLedger[account]++;
