@@ -1,7 +1,5 @@
 #include <cstdint>
 #include <iostream>
-#include <map>
-#include "transaction.hpp"
 
 class Block {
 	public:
@@ -9,6 +7,7 @@ class Block {
 		std::string GetHash();
 		void MineBlock(uint32_t nDifficulty, std::string account);
 		Block(uint32_t nIndexIn, const std::string &sDataIn);
+
 	
 	private:
 		uint32_t _index;

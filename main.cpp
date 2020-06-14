@@ -12,17 +12,13 @@ int main() {
 
 	// Create a chain and two accounts
 	Blockchain bChain = Blockchain(cli);
-	//Account alice_account = Account("a");
-	//Account bob_account = Account("b");
-	//std::string AliceAddr = alice_account.Address();
-	//std::string BobAddr = bob_account.Address();
 	
-	cout << "JonahChain started, waiting for input..." << endl;
+	std::cout << "JonahChain started, waiting for input..." << std::endl;
 
 	while(running)
 	{
 		std::cout << "-> ";
-		cin >> command >> target;
+		std::cin >> command >> target;
 		bChain.cmd.Operation(command, target);
 	}
 	
