@@ -1,6 +1,8 @@
 #include <iostream>
 #include "currency.hpp"
 
+#pragma once
+
 class CLI {
 	public:
 		CLI(std::string name, uint32_t capacity);
