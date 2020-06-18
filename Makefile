@@ -2,7 +2,7 @@
 NAME := JonahChain
 
 ## source files
-SRC := main.cpp blockchain.cpp block.cpp sha256.cpp account.cpp currency.cpp cli.cpp transaction.cpp
+SRC := main.cpp blockchain.cpp block.cpp sha256.cpp account.cpp currency.cpp cli.cpp transaction.cpp signer.cpp
 
 ## compiler and flags
 CC := clang++
