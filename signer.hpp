@@ -4,8 +4,6 @@
 
 #pragma once
 
-#define PUBLIC_KEY_LEN 40
-#define SECRET_KEY_LEN 64
 
 // Public-private keypair
 struct Keychain {
@@ -25,6 +23,9 @@ class Signer {
 
 		// Return the list of public keys
 		std::vector<Keychain> GetKeys();
+
+		// Save the current keychain to a local keyfile
+		bool Save();
 
 		// Read and load the local keyfile
 		bool Read();

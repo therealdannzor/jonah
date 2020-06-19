@@ -1,4 +1,8 @@
 #include <vector>
+#include <ostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include "signer.hpp"
 #include "sodium.h"
 
@@ -21,10 +25,39 @@ void Signer::Create() {
 
 	// add keychain to collection
 	collection.push_back(kc);
-
-	printf("Key pair generated! Public key: %s", kc.pk);
 }
 
 std::vector<Keychain> Signer::GetKeys() {
 	return collection;
 }
+
+bool Signer::Save() {
+	std::ofstream file;
+	file.open("key.txt");
+	std::stringstream ss;
+
+	for (const auto &e : this->collection) {
+		ss.clear();
+
+		for (int i=0; i < crypto_sign_PUBLICKEYBYTES; ++i) {
+			ss << std::hex << e.pk[i];
+		}
+
+		std::string public_key = ss.str();
+		if (public_key.length() != 32) {
+			std::cout << "err length: " << public_key.length() << std::endl;
+			return false;
+		}
+
+		std::cout << "Public key: " << public_key << std::endl;
+		file << public_key << std::endl;
+
+		ss.str("");
+		ss.clear();
+	}
+
+	file.close();
+	
+	return true;
+}
+	
