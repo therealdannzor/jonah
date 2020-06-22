@@ -4,19 +4,20 @@
 
 #pragma once
 
-
 // Public-private keypair
 struct Keychain {
 	// Public key
-	unsigned char pk[crypto_sign_PUBLICKEYBYTES];
+	std::string pk;
 	
 	// Secret key
-	unsigned char sk[crypto_sign_SECRETKEYBYTES];
+	std::string sk;
 };
 
 class Signer {
 	public:
 		Signer();
+
+		Keychain operator[](int i);
 
 		// Create a keypair
 		void Create();
@@ -30,8 +31,6 @@ class Signer {
 		// Read and load the local keyfile
 		bool Read();
 
-	private:
-		std::vector<Keychain> collection;
+		std::vector<Keychain> keys;
 };
-
 
