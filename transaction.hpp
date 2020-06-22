@@ -1,5 +1,7 @@
 #include <iostream>
 
+#pragma once
+
 class Transaction {
 	public:
 		std::string Hash();

@@ -3,6 +3,7 @@
 #include "block.hpp"
 #include "cli.hpp"
 
+#pragma once
 
 class Blockchain {
 	public:

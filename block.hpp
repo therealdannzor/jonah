@@ -1,6 +1,8 @@
 #include <cstdint>
 #include <iostream>
 
+#pragma once
+
 class Block {
 	public:
 		std::string previousHash;

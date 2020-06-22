@@ -1,6 +1,8 @@
 #include <iostream>
 #include <map>
 
+#pragma once
+
 class Currency {
 	public:
 		Currency(std::string, std::uint32_t max);

@@ -2,6 +2,8 @@
 #include <vector>
 #include "transaction.hpp"
 
+#pragma once
+
 class Account {
 	public:
 		Account(std::string password);
