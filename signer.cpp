@@ -45,6 +45,7 @@ void Signer::Create() {
 	size_t sec_result_length = strlen(sec_hex);
 	if (sec_result_length != 64) {
 		std::cout << "Incorrect secret key length; want 64, got: " << sec_result_length << std::endl;
+		return;
 	}
 
 	// add pair to a keychain
@@ -65,8 +66,8 @@ bool Signer::Save() {
 	file.open("key.txt");
 
 	for (auto it : keys) {
-		if (it.pk.length() == 0) {
-			std::cout << "Error: missing public key" << std::endl;
+		if (it.pk.length() == 0 || it.sk.length() == 0) {
+			std::cout << "Error: missing one or several keys" << std::endl;
 		} else {
 			// hacky JSON format
 			file << "{\"account\":\"" << it.pk << "\"," << "\"secret\":\"" << it.sk << "\"}" << std::endl;
