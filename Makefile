@@ -11,12 +11,13 @@ FLAGS := -Wall -std=c++11
 ## dependencies
 FLAGS += -I.static/libsodium-stable/src/libsodium/include
 FLAGS += -L.static/libsodium-stable/src/libsodium/.libs
+FLAGS += -I.static/json/include
+FLAGS += -L.static/json/lib
 
-
-dep:
+DEP_FLAGS := -lsodium -ljsoncpp
 
 build: 
-	@$(CC) $(FLAGS) -o $(NAME) $(SRC) -lsodium
+	@$(CC) $(FLAGS) -o $(NAME) $(SRC) $(DEP_FLAGS)
 
 clean:
 	@rm $(NAME)
