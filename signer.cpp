@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include "json.h"
+#include "reader.h"
 #include "signer.hpp"
 #include "sodium.h"
 
@@ -17,6 +18,9 @@ Signer::Signer()
 Keychain Signer::operator[](int i) {
 	return keys[i];
 }
+
+
+const std::string FILENAME = "key.json";
 
 void Signer::Create() {
 	// generate a public-private keypair
@@ -62,18 +66,59 @@ std::vector<Keychain> Signer::GetKeys() {
 	return keys;
 }
 
+
+bool Signer::Read() {
+	// check if there is a keyfile to read
+	std::ifstream file(FILENAME, std::ifstream::binary);
+	bool open = file.is_open();
+	if (!open) {
+		std::cout << "Error: file "<< FILENAME << " not found" << std::endl; 
+		return false;
+	}
+
+	// read keyfile
+	Json::Value root;
+	Json::CharReaderBuilder builder;
+	std::string errs;
+	bool parsedSuccessful = Json::parseFromStream(builder, file, &root, &errs);
+	if (!parsedSuccessful) {
+		std::cout << "Error: failed to parse configuration: " << errs << std::endl;
+		return false;
+	}
+
+	// check if key pair already exists (to avoid duplication)
+	std::string pubkey = root["account"].asString();
+	for (auto it : keys) {
+		if (it.pk == pubkey) {
+			std::cout << "Public key " << pubkey << "already loaded, aborting" << std::endl;
+			return false;
+		}
+	}
+	
+
+	// add keyfile content to keychain
+	std::string seckey = root["secret"].asString();
+	Keychain kc{.pk = pubkey, .sk = seckey};
+	keys.push_back(kc);
+
+	file.close();
+
+	return true;
+}
+
+
 bool Signer::Save() {
 	std::ofstream file;
-	file.open("key.txt");
+	file.open(FILENAME);
 
 	for (auto it : keys) {
 		if (it.pk.length() == 0 || it.sk.length() == 0) {
 			std::cout << "Error: missing one or several keys" << std::endl;
 		} else {
-			Json::Value ch;
-			ch[0]["account"] = it.pk;
-			ch[1]["secret"] = it.sk;
-			file << ch << std::endl;
+			Json::Value json;
+			json["account"] = it.pk;
+			json["secret"] = it.sk;
+			file << json << std::endl;
 		}
 	}
 
