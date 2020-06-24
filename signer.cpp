@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include "json.h"
 #include "signer.hpp"
 #include "sodium.h"
 
@@ -69,8 +70,10 @@ bool Signer::Save() {
 		if (it.pk.length() == 0 || it.sk.length() == 0) {
 			std::cout << "Error: missing one or several keys" << std::endl;
 		} else {
-			// hacky JSON format
-			file << "{\"account\":\"" << it.pk << "\"," << "\"secret\":\"" << it.sk << "\"}" << std::endl;
+			Json::Value ch;
+			ch[0]["account"] = it.pk;
+			ch[1]["secret"] = it.sk;
+			file << ch << std::endl;
 		}
 	}
 
