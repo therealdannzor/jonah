@@ -1,5 +1,5 @@
 #include "account.hpp"
-#include "sha256.h"
+#include "../sha256.h"
 #include <sstream>
 
 Account::Account(std::string pass) {
