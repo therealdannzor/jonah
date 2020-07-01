@@ -1,5 +1,5 @@
 #include <iostream>
-#include "currency.hpp"
+#include "coin/currency.hpp"
 
 #pragma once
 
