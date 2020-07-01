@@ -2,8 +2,7 @@
 #include <map>
 
 
-CLI::CLI(std::string currencyName, uint32_t capacity)
-: coin(Currency(currencyName, capacity))
+CLI::CLI()
 {
 }
 

@@ -5,7 +5,7 @@
 
 class Currency {
 	public:
-		Currency(std::string, std::uint32_t max);
+		Currency(std::string name, std::uint32_t max);
 
 		// the name of the currency
 		std::string name;
