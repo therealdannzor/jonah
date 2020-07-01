@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../currency.hpp"
+#include "../coin/currency.hpp"
 
 
 TEST_CASE( "account balances can increase and drecrease within limits" , "[currency]" ) {
@@ -7,7 +7,7 @@ TEST_CASE( "account balances can increase and drecrease within limits" , "[curre
 	Currency c = Currency("TestCoin", 5);
 
 	SECTION( "adding 1 coin to account results in correct balance" ) {
-		c.mLedger[account] = 1;
+		c.mLedger[account].num.Add(1);
 		int balance = c.Balance(account);
 		REQUIRE(balance == 1);
 	}

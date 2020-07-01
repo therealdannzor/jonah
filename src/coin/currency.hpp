@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include "intrange.hpp"
 
 #pragma once
 
@@ -10,14 +11,14 @@ class Currency {
 		// the name of the currency
 		std::string name;
 
-		// the capacity of the currency;
-		uint32_t capacity;
-
 		// the ledger with account balances
-		std::map<std::string, uint32_t> mLedger;
+		std::map<std::string, struct CustomInt> mLedger;
 
 		// retrieve balance of `address`
-		uint32_t Balance(std::string address);
+		int Balance(std::string address);
+
+		// add coins to an account `address`
+		void Fund(std::string address, int amount);
 
 		// transfer `amount` of currency from `sender` to `recipient`
 		// and returns a transaction hash

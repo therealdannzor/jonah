@@ -1,18 +1,21 @@
 #include "blockchain.hpp"
 #include "account.hpp"
 #include "signer.hpp"
+#include "coin/currency.hpp"
 
 
 int main() {
 	std::string command;
 	std::string target;
 	
+	// initialise command line interface
+	CLI cli = CLI();
 
+	// initialise cryptocurrency
+	Currency crypto = Currency("Jonahcoin", 490);
 
-	CLI cli = CLI("Jonahcoin", 490);
-
-	// Create a chain and two accounts
-	Blockchain bChain = Blockchain(cli);
+	// create chain
+	Blockchain bChain = Blockchain(crypto, cli);
 	
 	std::cout << "JonahChain started, waiting for input..." << std::endl;
 
