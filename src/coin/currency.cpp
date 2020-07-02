@@ -1,35 +1,35 @@
+#include "../../sha256.h"
 #include "currency.hpp"
 #include "intrange.hpp"
 #include <chrono>
 #include <sstream>
 
 
-Currency::Currency(std::string newName, uint32_t newCapacity)
+Currency::Currency(std::string newName)
 : name(newName)
 {
-	IntRange ir(newCapacity);
-	CustomInt ci; 
-	ci.num = ir;
-
-	std::map<std::string, struct CustomInt> m;
-	
+	std::map<std::string, IntRange> m;
 	mLedger = m;
 }
 
 int Currency::Balance(std::string account) {
-	return mLedger[account].num.Value();
+	return mLedger[account].Value();
 }
 
 void Currency::Fund(std::string account, int amount) {
-	mLedger[account].num.Add(amount);
+	mLedger[account].Add(amount);
+}
+
+void Currency::Defund(std::string account, int amount) {
+	mLedger[account].Sub(amount);
 }
 
 std::string Currency::Transfer(uint32_t amount, std::string sender, std::string recipient) {
-	if (mLedger[sender].num.Value() < amount)
+	if (mLedger[sender].Value() < amount)
 		return "";
 
-	mLedger[sender].num.Sub(amount);
-	mLedger[recipient].num.Add(amount);
+	mLedger[sender].Sub(amount);
+	mLedger[recipient].Add(amount);
 
 	return TransactionHash(sender, recipient);
 }
@@ -41,5 +41,5 @@ std::string Currency::TransactionHash(std::string from, std::string to) {
 
 	ss << from << to << in_time;
 
-	return ss.str();
+	return "0x" + sha256(ss.str());
 }

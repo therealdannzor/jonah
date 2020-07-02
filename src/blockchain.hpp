@@ -10,10 +10,18 @@ class Blockchain {
 
 		// Iinitialisation and config 
 		Blockchain(Currency currency, CLI cli);
-		std::string coinID; // coin name identifier
-		uint32_t nDifficulty; // mining difficulty
-		Currency coin; // cryptocurrency, as a storage of value
-		CLI cmd; // user access to coin commands
+
+		// coin name identifier
+		std::string coinID; 
+
+		// mining difficulty
+		uint32_t nDifficulty; 
+
+		 // cryptocurrency, as a storage of value
+		Currency coin;
+
+		// terminal interface access to chain commands
+		CLI cmd; 
 
 		// Block methods
 		std::vector<Block> vBlocks; // chain the blocks together

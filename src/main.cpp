@@ -12,7 +12,7 @@ int main() {
 	CLI cli = CLI();
 
 	// initialise cryptocurrency
-	Currency crypto = Currency("Jonahcoin", 490);
+	Currency crypto = Currency("Jonahcoin");
 
 	// create chain
 	Blockchain bChain = Blockchain(crypto, cli);

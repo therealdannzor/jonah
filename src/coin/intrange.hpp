@@ -1,40 +1,30 @@
 #include <iostream>
 #include <limits>
+#include <map>
 
 #pragma once
 
 
 class IntRange {
-	private:
+	public:
+		IntRange();
+
 		// max value
 		int capacity;
 
-		// stored value
-		int current;
+		// getters
+		int Capacity() const;
+		int Value();
 
-		// set a value
-		void Set(int val);
-
-		// allow access to private methods
 		friend class Currency;
-		friend class Blockchain;
 	
-	public:
-		IntRange();
-		IntRange(int val);
+	private:
+		// stored value
+		int value;
 
 		// subtract a value
 		void Sub(int val);
 
 		// add a value
 		void Add(int val);
-
-		// getters
-		int Capacity();
-		int Value();
-};
-
-
-struct CustomInt {
-	IntRange num;
 };

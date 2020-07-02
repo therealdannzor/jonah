@@ -14,7 +14,7 @@ Blockchain::Blockchain(Currency c, CLI cli)
 void Blockchain::AddBlock(Block newBlock, std::string account) {
 	newBlock.previousHash = GetLastBlock().GetHash();
 	newBlock.MineBlock(nDifficulty, account);
-	coin.mLedger[account].num.Add(1);
+	coin.mLedger[account].Add(1);
 	vBlocks.push_back(newBlock);
 }
 
