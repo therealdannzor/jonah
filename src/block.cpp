@@ -3,7 +3,9 @@
 #include <sstream>
 #include <chrono>
 
-Block::Block(uint32_t nIndexIn, const std::string &sDataIn) {
+Block::Block(uint32_t indexIn, const std::string dataIn)
+: index(indexIn), data(dataIn)
+{
 	_nonce = -1;
 	_time = time(nullptr);
 }
@@ -37,8 +39,14 @@ void Block::MineBlock(uint32_t nDifficulty, std::string account) {
 
 inline std::string Block::CalculateHash() const {
 	std::stringstream ss;
-	ss << _index << _time << _data << _nonce << previousHash;
+	ss << index << _time << data << _nonce << previousHash;
 
 	return sha256(ss.str());
 }
 
+bool Block::operator==(const Block& b) {
+	if (this->index == b.index && this->data == b.data)
+		return true;
+
+	return false;
+}
