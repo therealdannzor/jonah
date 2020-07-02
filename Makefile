@@ -29,7 +29,14 @@ DEP_FLAGS := -lsodium -ljsoncpp
 
 CATCH_SINGLE_INCLUDE := ./src/test/catch.hpp
 
-TEST_FILES := ./sha256.cpp ./src/test/main_test.cpp ./src/test/currency_test.cpp ./src/coin/currency.cpp ./src/coin/intrange.cpp
+TEST_FILES := ./sha256.cpp \
+			  ./src/test/main_test.cpp \
+			  ./src/test/currency_test.cpp \
+			  ./src/coin/currency.cpp \
+			  ./src/coin/intrange.cpp \
+			  ./src/cli.cpp \
+			  ./src/blockchain.cpp \
+			  ./src/block.cpp
 
 build: 
 	@$(CC) $(FLAGS) -o $(NAME) $(SRC) $(DEP_FLAGS)

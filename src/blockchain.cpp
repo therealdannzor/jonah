@@ -5,22 +5,20 @@
 Blockchain::Blockchain(Currency c, CLI cli)
 : coin(c), cmd(cli)
 {
-	vBlocks.emplace_back(Block(0, "Genesis Block"));
+	blocks.emplace_back(Block(0, "Genesis Block"));
 
-	nDifficulty = 3;
+	difficulty = 3;
 }
 
 
 void Blockchain::AddBlock(Block newBlock, std::string account) {
 	newBlock.previousHash = GetLastBlock().GetHash();
-	newBlock.MineBlock(nDifficulty, account);
-	coin.mLedger[account].Add(1);
-	vBlocks.push_back(newBlock);
+	newBlock.MineBlock(difficulty, account);
+	coin.Fund(account, 1);
+	blocks.push_back(newBlock);
 }
 
 
-Block Blockchain::GetLastBlock() const {
-	return vBlocks.back();
-}
-
-
+Block Blockchain::GetLastBlock() const { return blocks.back(); }
+int Blockchain::Size() { return blocks.size(); }
+uint32_t Blockchain::Difficulty() { return difficulty; }
