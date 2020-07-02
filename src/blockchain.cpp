@@ -1,7 +1,9 @@
 #include "blockchain.hpp"
+#include "coin/intrange.hpp"
+#include "coin/currency.hpp"
 
-Blockchain::Blockchain(CLI cli)
-: cmd(cli)
+Blockchain::Blockchain(Currency c, CLI cli)
+: coin(c), cmd(cli)
 {
 	vBlocks.emplace_back(Block(0, "Genesis Block"));
 
@@ -12,7 +14,7 @@ Blockchain::Blockchain(CLI cli)
 void Blockchain::AddBlock(Block newBlock, std::string account) {
 	newBlock.previousHash = GetLastBlock().GetHash();
 	newBlock.MineBlock(nDifficulty, account);
-	cmd.coin.mLedger[account]++;
+	coin.mLedger[account].Add(1);
 	vBlocks.push_back(newBlock);
 }
 
